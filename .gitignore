@@ -1,0 +1,20 @@
+
+# modules
+node_modules
+
+# code coverage report
+coverage
+
+# logs
+logs
+*.log
+npm-debug.log*
+
+# runtime
+pids
+
+# npm cache
+.npm
+
+# dotenv environment files
+.env*

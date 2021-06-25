@@ -1,0 +1,16 @@
+# node modules
+node_modules/
+
+# test coverage
+coverage/
+
+# github folder
+.github/
+
+# Docker
+Dockerfile
+.dockerignore
+
+# node package files
+package.json
+package-lock.json
