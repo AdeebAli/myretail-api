@@ -3,5 +3,5 @@ const products = require('./products/get');
 
 module.exports = {
   base,
-  products,
+  products
 };

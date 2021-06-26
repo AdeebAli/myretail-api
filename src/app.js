@@ -17,7 +17,7 @@ app.use(async (req, res, next) => {
   const startTime = Date.now();
   await next();
   const finishTime = Date.now();
-  logger.info(`${res.statusCode} - ${req.method} ${req.url} - ${finishTime - startTime} ms`);
+  logger.info(`${res.statusCode} - ${req.method} ${req.originalUrl} - ${finishTime - startTime} ms`);
 });
 
 // inject router with all routes

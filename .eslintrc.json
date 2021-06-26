@@ -18,5 +18,7 @@
     "plugins": [
         "jest"
     ],
-    "rules": {}
+    "rules": {
+        "comma-dangle": 0
+    }
 }
