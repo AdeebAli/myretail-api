@@ -20,7 +20,7 @@ const updateMongoProductPrice = async ({ productId, priceData }) => {
   const { value, currency_code } = priceData;
   /* eslint-enable camelcase */
 
-  const productPrice = await ProductModel.findByIdAndUpdate(
+  const productPrice = await ProductModel.findOneAndUpdate(
     { id: productId },
     {
       current_price: {

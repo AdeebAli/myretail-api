@@ -4,7 +4,7 @@ const api = {
 };
 
 const redSkyApi = {
-  url: 'https://redsky.target.com/v3/pdp/tcin',
+  url: process.env.REDSKY_API_URL || 'https://redsky.target.com/v3/pdp/tcin',
 };
 
 const log = {
@@ -12,7 +12,7 @@ const log = {
 };
 
 const mongo = {
-  uri: 'mongodb://localhost/myretail-db'
+  uri: process.env.MONGO_URI || 'mongodb://localhost/myretail-db'
 };
 
 module.exports = {
