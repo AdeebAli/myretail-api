@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",
-    "test": "eslint src/ test/ && jest test/ --coverage",
+    "test": "eslint src/ test/ && jest test/ --coverage --runInBand",
     "lint": "eslint src/ test/",
     "lint:fix": "eslint src/ test/ --fix"
   },
@@ -20,7 +20,7 @@
   "license": "ISC",
   "dependencies": {
     "async-exit-hook": "^2.0.1",
-    "body-parser": "^1.19.0",
+    "axios": "^0.21.1",
     "express": "^4.17.1",
     "helmet": "^4.4.1",
     "mongoose": "^5.11.11",
