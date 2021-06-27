@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",
-    "test": "eslint src/ test/ && jest test/ --coverage",
+    "test": "eslint src/ test/ && jest test/ --coverage --runInBand",
     "lint": "eslint src/ test/",
     "lint:fix": "eslint src/ test/ --fix"
   },

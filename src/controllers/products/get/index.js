@@ -10,11 +10,10 @@ const controller = async (req, res) => {
     const redSkyProductData = await getRedSkyProductData({ productId });
     const mongoProductPriceData = await getMongoProductPriceData({ productId });
     if (!redSkyProductData) {
-      res.status(404).send(`Product data for ID ${productId} not found`);
+      logger.error('could not find RedSky product data');
+      return res.status(404).send(`Product data for ID ${productId} not found`);
     }
-    if (!mongoProductPriceData) {
-      res.status(404).send(`Price data for ID ${productId} not found`);
-    }
+
     const { product_description: { title }, tcin } = redSkyProductData.product.item;
     const responseBody = {
       id: tcin,
@@ -22,10 +21,10 @@ const controller = async (req, res) => {
       current_price: mongoProductPriceData
     };
 
-    res.status(200).send(responseBody);
+    return res.status(200).send(responseBody);
   } catch (error) {
-    res.status(500).send('Internal Server Error');
     logger.error(error);
+    return res.status(500).send('Internal Server Error');
   }
 };
 

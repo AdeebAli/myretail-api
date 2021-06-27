@@ -15,15 +15,20 @@ const controller = async (req, res) => {
   /* eslint-enable camelcase */
 
   if (!productId) {
-    res.status(400).send('Please include a valid product id in the request');
+    return res.status(400).send('Please include a valid product id in the request');
   }
   try {
-    await updateMongoProductPrice({ productId, priceData: { value, currency_code } });
+    const mongoProductPrice = await updateMongoProductPrice({
+      productId, priceData: { value, currency_code }
+    });
+    /* eslint-disable camelcase */
+    const { id, current_price } = mongoProductPrice;
+    /* eslint-enable camelcase */
+    return res.status(201).send({ id, current_price });
   } catch (error) {
-    res.status(500).send('Internal Server Error');
     logger.error(error);
+    return res.status(500).send('Internal Server Error');
   }
-  res.status(200).send(`Succesfully updated price date for Product ${productId}`);
 };
 
 module.exports = controller;

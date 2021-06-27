@@ -1,5 +1,6 @@
 const axios = require('axios');
 const { redSkyApi: { url } } = require('../../config');
+const logger = require('../../logger');
 const ProductModel = require('../../models/product');
 
 const getRedSkyProductData = async ({ productId }) => {
@@ -8,11 +9,16 @@ const getRedSkyProductData = async ({ productId }) => {
 };
 
 const getMongoProductPriceData = async ({ productId }) => {
-  const productPriceData = await ProductModel.findOne({ id: productId });
-  /* eslint-disable camelcase */
-  const { value, currency_code } = productPriceData.current_price;
-  /* eslint-enable camelcase */
-  return { value, currency_code };
+  try {
+    const productPriceData = await ProductModel.findOne({ id: productId });
+    /* eslint-disable camelcase */
+    const { value, currency_code } = productPriceData.current_price;
+    /* eslint-enable camelcase */
+    return { value, currency_code };
+  } catch (error) {
+    logger.error(error);
+    return null;
+  }
 };
 
 const updateMongoProductPrice = async ({ productId, priceData }) => {
@@ -29,8 +35,9 @@ const updateMongoProductPrice = async ({ productId, priceData }) => {
       }
     },
     {
-      new: true,
-      upsert: true
+      returnOriginal: false,
+      upsert: true,
+      useFindAndModify: false
     }
   );
 
