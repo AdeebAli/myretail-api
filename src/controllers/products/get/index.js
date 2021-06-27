@@ -3,9 +3,6 @@ const { getRedSkyProductData, getMongoProductPriceData } = require('../../../ser
 
 const controller = async (req, res) => {
   const { params: { id: productId } } = req;
-  if (!productId) {
-    res.status(400).send('Please include a valid product id in the request');
-  }
   try {
     const redSkyProductData = await getRedSkyProductData({ productId });
     const mongoProductPriceData = await getMongoProductPriceData({ productId });

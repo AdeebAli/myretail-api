@@ -14,9 +14,6 @@ const controller = async (req, res) => {
   } = req;
   /* eslint-enable camelcase */
 
-  if (!productId) {
-    return res.status(400).send('Please include a valid product id in the request');
-  }
   try {
     const mongoProductPrice = await updateMongoProductPrice({
       productId, priceData: { value, currency_code }
